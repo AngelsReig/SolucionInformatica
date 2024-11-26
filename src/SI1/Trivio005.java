@@ -49,10 +49,17 @@ public class Trivio005 extends PApplet {
                 break;
         }
 
+        updateCursor(this);
 
-        fill(0);
-        text(mouseX+", "+mouseY, 100, 100);
+    }
 
+    public void updateCursor(PApplet p5){
+        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5)){
+            cursor(HAND);
+        }
+        else {
+            cursor(ARROW);
+        }
     }
 
     // ******************* KEYBOARD interaction ***************************** //
@@ -85,8 +92,23 @@ public class Trivio005 extends PApplet {
     // ******************* MOUSE interaction ***************************** //
 
     public void mousePressed(){
-        println("X: "+mouseX+", Y:"+mouseY);
+        if(gui.b1.mouseOverButton(this)){
+            gui.pantallaActual = GUI.PANTALLA.INICIO;
+        }
+        else if(gui.b2.mouseOverButton(this)){
+            gui.pantallaActual = GUI.PANTALLA.FUTURASLECTURAS;
+        }
+        else if(gui.b3.mouseOverButton(this)){
+            gui.pantallaActual = GUI.PANTALLA.LECTURASCOMPLETADAS;
+        }
+        else if(gui.b4.mouseOverButton(this)){
+            gui.pantallaActual = GUI.PANTALLA.QUEQUIERESLEER;
+        }
+        else if(gui.b5.mouseOverButton(this)){
+            gui.pantallaActual = GUI.PANTALLA.ESTADÍSTICAS;
+        }
     }
+
 
     public void mouseDragged(){
         println("MOUSE DRAGGED");

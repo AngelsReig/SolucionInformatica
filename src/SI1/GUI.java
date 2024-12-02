@@ -7,7 +7,7 @@ import static SI1.Layout.*;
 import SI1.BarsDiagram;
 import processing.core.PFont;
 
-public class GUI {
+public class GUI extends PApplet{
 
     // Enumerat de les Pantalles de l'App
     public enum PANTALLA {INICIO, FUTURASLECTURAS, LECTURASCOMPLETADAS, QUEQUIERESLEER, ESTADÍSTICAS, LIBRONOLEIDO, LIBROLEIDO};
@@ -22,12 +22,17 @@ public class GUI {
     String[] textos = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     float[] values = {400, 600, 100, 300, 200, 800, 100, 50, 300, 700, 400, 200};
 
+    String[] texts = {"Género 1", "Género 2", "Género 3", "Género 4"};
+    float[] value = {400f, 600f, 100f, 300f};
+    int[] colors = {color(27, 40, 69), color(39, 64, 96), color(51, 92, 129), color(88, 153, 226)};
+
 
 
     // Botons
     Button b1, b2, b3, b4 ,b5;  // 2a passa : declarar els components
 
     BarsDiagram BD;
+    SectorDiagram s;
 
 
     // Constructor de la GUI
@@ -41,6 +46,14 @@ public class GUI {
 
         BD.setTexts(textos);
         BD.setValues(values);
+
+        // Creació del Diagrama de Sectors
+        s = new SectorDiagram(1400, 850, 200);
+
+        // Configuració de Dades (textos, valors, colors)
+        s.setTexts(texts);
+        s.setValues(value);
+        s.setColors(colors);
 
     }
 
@@ -137,9 +150,10 @@ public class GUI {
 
         p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(50);
         p5.text("Páginas leidas el último año", 800, 100);
-        p5.text("Géneros más leidos", 700, 550);
+        p5.text("Géneros más leidos", 800, 800);
 
         BD.display(p5);
+        s.display(p5);
     }
 
     public void dibuixaPantallaLibroNoLeido(PApplet p5){

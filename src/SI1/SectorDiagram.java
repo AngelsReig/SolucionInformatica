@@ -13,7 +13,7 @@ public class SectorDiagram {
 
     // Informació del diagrama (textos, valors i colors)
     String[] texts;
-    float[] values;
+    float[] value;
     float[] percentages;
     int[] colors;
 
@@ -33,15 +33,15 @@ public class SectorDiagram {
     }
 
     public void setValues(float[] v){
-        this.values = v;
+        this.value = v;
         this.total = 0;
-        for(int i=0; i<values.length; i++){
-            this.total += this.values[i];
+        for(int i=0; i<value.length; i++){
+            this.total += this.value[i];
         }
 
-        this.percentages = new float[values.length];
+        this.percentages = new float[value.length];
         for(int i=0; i<percentages.length; i++){
-            this.percentages[i] = (this.values[i] / this.total)*100f;
+            this.percentages[i] = (this.value[i] / this.total)*100f;
         }
     }
 
@@ -53,12 +53,12 @@ public class SectorDiagram {
 
     public void display(PApplet p5){
 
-        p5.pushStyle();
+        //p5.pushStyle();
 
         float angStart = 0;
-        for(int i=0; i<this.values.length; i++){
+        for(int i=0; i<this.value.length; i++){
 
-            float sectorValue = (this.values[i] / this.total)*TWO_PI;
+            float sectorValue = (this.value[i] / this.total)*TWO_PI;
             float angEnd = angStart + sectorValue;
 
             p5.fill(colors[i]); p5.stroke(0); p5.strokeWeight(5);
@@ -77,7 +77,7 @@ public class SectorDiagram {
 
             angStart = angEnd;
         }
-        p5.popStyle();
+        //p5.popStyle();
     }
 
 }

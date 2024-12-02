@@ -4,6 +4,8 @@ import processing.core.PApplet;
 
 import static SI1.Mides.*;
 import static SI1.Layout.*;
+import SI1.BarsDiagram;
+import processing.core.PFont;
 
 public class GUI {
 
@@ -16,8 +18,17 @@ public class GUI {
     Colors appColors;
     Fonts fontsApp;
 
+
+    String[] textos = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    float[] values = {400, 600, 100, 300, 200, 800, 100, 50, 300, 700, 400, 200};
+
+
+
     // Botons
     Button b1, b2, b3, b4 ,b5;  // 2a passa : declarar els components
+
+    BarsDiagram BD;
+
 
     // Constructor de la GUI
     public GUI(PApplet p5){
@@ -26,6 +37,11 @@ public class GUI {
         fontsApp = new Fonts(p5);     // Constructor de les fonts de l'App
 
         createButtons(p5);
+        BD = new BarsDiagram(500,-750,1370,1200);
+
+        BD.setTexts(textos);
+        BD.setValues(values);
+
     }
 
     public void createButtons(PApplet p5){
@@ -118,6 +134,12 @@ public class GUI {
 
         p5.fill(255); p5.textFont(fontsApp.getFirstFont()); p5.textSize(60);
         p5.text("Estadísticas", 220, 695);
+
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(50);
+        p5.text("Páginas leidas el último año", 800, 100);
+        p5.text("Géneros más leidos", 700, 550);
+
+        BD.display(p5);
     }
 
     public void dibuixaPantallaLibroNoLeido(PApplet p5){

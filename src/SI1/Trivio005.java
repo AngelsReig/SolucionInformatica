@@ -54,7 +54,7 @@ public class Trivio005 extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5)){
+        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)){
             cursor(HAND);
         }
         else {

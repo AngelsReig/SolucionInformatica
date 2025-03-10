@@ -64,8 +64,8 @@ public class SectorDiagram {
             p5.fill(colors[i]); p5.stroke(0); p5.strokeWeight(5);
             p5.arc(this.x, this.y, 2*this.r, 2*this.r, angStart, angEnd);
 
-            float textX = this.x + (this.r + 50)*cos((angStart+angEnd)/2f);
-            float textY = this.y + (this.r + 50)*sin((angStart+angEnd)/2f);
+            float textX = this.x + (this.r + 70)*cos((angStart+angEnd)/2f);
+            float textY = this.y + (this.r + 70)*sin((angStart+angEnd)/2f);
             p5.fill(0); p5.textAlign(p5.CENTER); p5.textSize(24);
             p5.text(this.texts[i], textX, textY);
 

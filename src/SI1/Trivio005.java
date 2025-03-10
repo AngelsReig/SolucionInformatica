@@ -7,6 +7,8 @@ public class Trivio005 extends PApplet {
     // Interfície Gràfica (Pantalles i components)
     GUI gui;
 
+    DataBase db;
+
     public static void main(String[] args) {
         PApplet.main("SI1.Trivio005", args);
     }
@@ -17,6 +19,9 @@ public class Trivio005 extends PApplet {
     }
 
     public void setup(){
+        db= new DataBase("admin","12345","libros");
+        db.connect();
+
         noStroke();                         // Sense bordes
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
         gui = new GUI(this);                   // Constructor de la GUI
@@ -54,7 +59,7 @@ public class Trivio005 extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)){
+        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)  ){
             cursor(HAND);
         }
         else {
@@ -87,6 +92,10 @@ public class Trivio005 extends PApplet {
             gui.pantallaActual = GUI.PANTALLA.LIBROLEIDO;
         }
 
+        // Comprova i actualitza l'escriptura dins els TextFields
+        gui.tf1.keyPressed(key, keyCode);
+        gui.tf2.keyPressed(key, keyCode);
+
     }
 
     // ******************* MOUSE interaction ***************************** //
@@ -107,7 +116,12 @@ public class Trivio005 extends PApplet {
         else if(gui.b5.mouseOverButton(this)){
             gui.pantallaActual = GUI.PANTALLA.ESTADÍSTICAS;
         }
+
+        // Comprova si pitjam amb el mouse sobre els TextFields
+        gui.tf1.isPressed(this);
+        gui.tf2.isPressed(this);
     }
+
 
 
     public void mouseDragged(){

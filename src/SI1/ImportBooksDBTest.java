@@ -1,0 +1,129 @@
+package SI1;
+
+import processing.core.PApplet;
+
+import java.util.ArrayList;
+
+public class ImportBooksDBTest extends PApplet {
+
+    // Variable de BBDD
+    DataBase db;
+
+    public static void main(String[] args) {
+        PApplet.main("SI1.ImportBooksDBTest", args);
+    }
+
+    public void settings(){
+        size(1300, 600);
+        smooth(10);
+    }
+
+    public void setup(){
+
+        // Configura els paràmetres de connexió a la BBDD
+        db = new DataBase("admin", "12345", "libros");
+
+        // Connecta amb la BBDD
+        db.connect();
+
+        // Crea els inserts amb dades de la BBDD (CSV)
+        //getEditorsInfoDataBase("books.csv");  // Fet
+        //getAuthorsInfoDataBase("books.csv");  // Fet
+        getBooksInfoDataBase("books.csv");  // Pendent de provar
+
+    }
+
+    public void draw(){
+        background(255);
+        fill(0); textSize(28);
+
+    }
+
+    // Crea la taula Table amb les dades de la BBDD.
+    public void getEditorsInfoDataBase(String dbName){
+
+        String[] lines = loadStrings(dbName);
+        ArrayList<String> editors = new ArrayList<>();
+        for(String l : lines){
+            String[] info = l.split(",");
+            String editorName = info[11];
+            if(!editors.contains(editorName)){
+                editors.add(editorName);
+            }
+        }
+
+        for(String editor: editors){
+            System.out.println("INSERT INTO editorial (ideditorial, nombre) VALUES ('', '"+editor+"'); ");
+        }
+
+    }
+
+    public void getAuthorsInfoDataBase(String dbName){
+
+        String[] lines = loadStrings(dbName);
+        ArrayList<String> authors = new ArrayList<>();
+        for(String l : lines){
+            String[] info = l.split(",");
+            String authorName = info[2];
+            if(authorName.indexOf("/")!=-1){
+                authorName = authorName.split("/")[0];
+            }
+            if(!authors.contains(authorName)){
+                authors.add(authorName);
+            }
+        }
+
+        for(String author: authors){
+            System.out.println("INSERT INTO autor (idautor, nombre) VALUES ('', '"+author+"'); ");
+        }
+
+    }
+
+    public void getBooksInfoDataBase(String dbName){
+        String[] lines = loadStrings(dbName);
+        for(String l : lines){
+
+            String[] info = l.split(",");
+            String title = info[1].replace("\'", "\\'").replace("\"", "\\\"");
+            String author = info[2];
+            String average = info[3];
+            String isbn = info[5];
+            String numpages = info[7];
+            String editor = info[11];
+
+            String idAuthor = db.getInfo("idautor", "autor", author, "nombre");
+            String idEditor = db.getInfo("ideditorial", "editorial", editor, "nombre");
+            if(idEditor==null){
+                idEditor0
+
+            }
+
+            String sql = "INSERT INTO libro (isbn, titulo, numpags, valoracion, fechapublicacion, resena, editorial_ideditorial, autor_idautor, genero_idegenero, coleccion_idecoleccion, fecha)";
+            sql += " VALUES ('"+isbn+"', '"+title+"', '"+numpages+"', '"+average+"', '', '"+ idEditor+"', '"+idAuthor+"', '1', '2', ''); ";
+            System.out.println(sql);
+            break;
+
+        }
+
+    }
+
+    // ******************* KEYBOARD interaction ***************************** //
+
+    public void keyPressed(){
+    }
+
+    // ******************* MOUSE interaction ***************************** //
+
+    public void mousePressed(){
+
+    }
+
+    public void mouseDragged(){
+        println("MOUSE DRAGGED");
+    }
+
+    public void mouseReleased() {
+        println("MOUSE RELEASED");
+    }
+
+}

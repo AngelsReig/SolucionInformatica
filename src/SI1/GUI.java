@@ -11,7 +11,7 @@ import processing.core.PImage;
 public class GUI extends PApplet{
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {INICIO, FUTURASLECTURAS, LECTURASCOMPLETADAS, QUEQUIERESLEER, ESTADÍSTICAS, LIBRONOLEIDO, LIBROLEIDO};
+    public enum PANTALLA {USUARIO, INICIO, FUTURASLECTURAS, LECTURASCOMPLETADAS, QUEQUIERESLEER, ESTADÍSTICAS, LIBRO};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -30,7 +30,7 @@ public class GUI extends PApplet{
 
 
     // Botons
-    Button b1, b2, b3, b4 ,b5;  // 2a passa : declarar els components
+    Button b1, b2, b3, b4 ,b5, b6;  // 2a passa : declarar els components
 
     RoundButton rb1;
     PImage portada1;
@@ -100,10 +100,16 @@ public class GUI extends PApplet{
         b3 = new Button(p5, "Lecturas completadas", 30, 360, 370, 110);
         b4 = new Button(p5, "¿Qué quieres leer?", 30, 500, 370, 110);
         b5 = new Button(p5, "Estadísticas", 30, 640, 370, 110);
+        b6 = new Button(p5, "Enter", 1600, 670, 150, 70);
     }
 
 
     // PANTALLES DE LA GUI
+
+    public void dibuixaPantallaUsuario(PApplet p5){
+
+        p5.background(197, 212, 232);
+    }
 
     public void dibuixaPantallaInicio(PApplet p5){
 
@@ -192,6 +198,7 @@ public class GUI extends PApplet{
         p5.fill(255); p5.textFont(fontsApp.getFirstFont()); p5.textSize(60);
         p5.text("¿Qué quieres", 220, 540);
         p5.text("leer?", 220, 595);
+        b6.display(p5);
 
         p5.fill(0); p5.textFont(fontsApp.getFirstFont()); p5.textSize(100);
         p5.text("¿Qué quieres leer?", 1150, 250);
@@ -222,20 +229,8 @@ public class GUI extends PApplet{
         s.display(p5);
     }
 
-    public void dibuixaPantallaLibroNoLeido(PApplet p5){
 
-        p5.background(197, 212, 232);
-        dibuixaSideBar(p5);
-
-        p5.textFont(fontsApp.getSecondFont());
-        b1.display(p5);
-        b2.display(p5);
-        b3.display(p5);
-        b4.display(p5);
-        b5.display(p5);
-    }
-
-    public void dibuixaPantallaLibroLeido(PApplet p5){
+    public void dibuixaPantallaLibro(PApplet p5){
 
         p5.background(197, 212, 232);
         dibuixaSideBar(p5);

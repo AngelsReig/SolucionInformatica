@@ -21,6 +21,30 @@ public class Trivio005 extends PApplet {
     public void setup(){
         db= new DataBase("admin","12345","libros");
         db.connect();
+        db.getInfo("nombre", "usuario", "prova1", "nombre");
+        String[] ColumnInfo = db.getInfo("usuario", "nombre");
+        printArray(ColumnInfo);
+
+        String[][] tableInfo = db.getInfo();
+        println("TAULA: ");
+        for(int i=0; i<tableInfo.length; i++){
+            print(i+": ");
+            for(int j=0; j<tableInfo[i].length; j++){
+                System.out.print(tableInfo[i][j]+"\t");
+            }
+            println();
+        }
+
+        String[][] infoQuerry = db.getUsuarioContrasena();
+        println("TAULA: ");
+        for(int i=0; i<infoQuerry.length; i++){
+            print(i+": ");
+            for(int j=0; j<infoQuerry[i].length; j++){
+                System.out.print(infoQuerry[i][j]+"\t");
+            }
+            println();
+        }
+
 
         noStroke();                         // Sense bordes
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
@@ -47,10 +71,10 @@ public class Trivio005 extends PApplet {
             case ESTADÍSTICAS:     gui.dibuixaPantallaEstadísticas(this);
                 break;
 
-            case LIBRONOLEIDO:     gui.dibuixaPantallaLibroNoLeido(this);
+            case LIBRO:     gui.dibuixaPantallaLibro(this);
                 break;
 
-            case LIBROLEIDO:     gui.dibuixaPantallaLibroLeido(this);
+            case USUARIO:     gui.dibuixaPantallaUsuario(this);
                 break;
         }
 
@@ -86,10 +110,10 @@ public class Trivio005 extends PApplet {
             gui.pantallaActual = GUI.PANTALLA.ESTADÍSTICAS;
         }
         else if(key=='6'){
-            gui.pantallaActual = GUI.PANTALLA.LIBRONOLEIDO;
+            gui.pantallaActual = GUI.PANTALLA.LIBRO;
         }
         else if(key=='7'){
-            gui.pantallaActual = GUI.PANTALLA.LIBROLEIDO;
+            gui.pantallaActual = GUI.PANTALLA.USUARIO;
         }
 
         // Comprova i actualitza l'escriptura dins els TextFields

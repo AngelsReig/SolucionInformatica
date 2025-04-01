@@ -30,7 +30,7 @@ public class GUI extends PApplet{
 
 
     // Botons
-    Button b1, b2, b3, b4 ,b5, b6;  // 2a passa : declarar els components
+    Button b1, b2, b3, b4 ,b5, b6, b7, b8;  // 2a passa : declarar els components
 
     RoundButton rb1;
     PImage portada1;
@@ -54,13 +54,13 @@ public class GUI extends PApplet{
     int bgColor;
 
     // Elements de la Interfície Gràfica (TextFields)
-    TextField tf1, tf2;
+    TextField tf1, tf2, tf3;
 
 
 
     // Constructor de la GUI
     public GUI(PApplet p5){
-        pantallaActual = PANTALLA.INICIO;
+        pantallaActual = PANTALLA.USUARIO;
         appColors = new Colors(p5);   // Constructor dels colors de l'App
         fontsApp = new Fonts(p5);     // Constructor de les fonts de l'App
 
@@ -82,8 +82,9 @@ public class GUI extends PApplet{
         // Color de fons
         bgColor = color(255);
 
-        tf1 = new TextField(p5, 570, 500, 1200, 150);
-        tf2 = new TextField(p5, 200, 400, 400, 40);
+        tf1 = new TextField(p5, 570, 500, 1200, 150,60);
+        tf2 = new TextField(p5, 710, 420, 400, 40,25);
+        tf3 = new TextField(p5, 710, 595, 400, 40,25);
 
 
         portada1 = p5.loadImage("data/agggtm.png");
@@ -101,6 +102,8 @@ public class GUI extends PApplet{
         b4 = new Button(p5, "¿Qué quieres leer?", 30, 500, 370, 110);
         b5 = new Button(p5, "Estadísticas", 30, 640, 370, 110);
         b6 = new Button(p5, "Enter", 1600, 670, 150, 70);
+        b7 = new Button(p5, "Iniciar sesión", 670, 730, 230, 110);
+        b8 = new Button(p5, "Registrarse", 920, 730, 230, 110);
     }
 
 
@@ -109,6 +112,19 @@ public class GUI extends PApplet{
     public void dibuixaPantallaUsuario(PApplet p5){
 
         p5.background(197, 212, 232);
+
+        p5.fill(0); p5.textFont(fontsApp.getFirstFont()); p5.textSize(140);
+        p5.text("TUS LECTURAS", 975, 250);
+
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(40);
+        p5.text("Usuario", 770, 400);
+        p5.text("Contraseña", 802, 575);
+        tf2.display(p5);
+        tf3.display(p5);
+
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont());
+        b7.display(p5);
+        b8.display(p5);
     }
 
     public void dibuixaPantallaInicio(PApplet p5){
@@ -203,7 +219,7 @@ public class GUI extends PApplet{
         p5.fill(0); p5.textFont(fontsApp.getFirstFont()); p5.textSize(100);
         p5.text("¿Qué quieres leer?", 1150, 250);
 
-
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(100);
         tf1.display(p5);
     }
 

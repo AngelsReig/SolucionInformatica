@@ -81,27 +81,32 @@ public class ImportBooksDBTest extends PApplet {
 
     public void getBooksInfoDataBase(String dbName){
         String[] lines = loadStrings(dbName);
-        for(String l : lines){
+        int n=0;
 
+        for(String l : lines){
+            if(n>0){
             String[] info = l.split(",");
             String title = info[1].replace("\'", "\\'").replace("\"", "\\\"");
-            String author = info[2];
+            String author = info[2].split("/")[0];
+            //println(author);
             String average = info[3];
             String isbn = info[5];
+            //println(title);
             String numpages = info[7];
             String editor = info[11];
 
             String idAuthor = db.getInfo("idautor", "autor", author, "nombre");
             String idEditor = db.getInfo("ideditorial", "editorial", editor, "nombre");
             if(idEditor==null){
-                idEditor0
-
+                idEditor = "4591";
             }
 
-            String sql = "INSERT INTO libro (isbn, titulo, numpags, valoracion, fechapublicacion, resena, editorial_ideditorial, autor_idautor, genero_idegenero, coleccion_idecoleccion, fecha)";
-            sql += " VALUES ('"+isbn+"', '"+title+"', '"+numpages+"', '"+average+"', '', '"+ idEditor+"', '"+idAuthor+"', '1', '2', ''); ";
+            String sql = "INSERT INTO libro (isbn, titulo, numpags, valoracion, fechapublicacion, resena, editorial_ideditorial, autor_idautor, genero_idgenero, coleccion_idcolecion, fecha)";
+            sql += " VALUES ('"+isbn+"', '"+title+"', '"+numpages+"', '"+average+"', '', '', '"+ idEditor+"', '"+idAuthor+"', '1', '2', ''); ";
             System.out.println(sql);
-            break;
+
+            }
+            n++;
 
         }
 

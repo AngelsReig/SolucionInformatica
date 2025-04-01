@@ -83,12 +83,34 @@ public class Trivio005 extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)  ){
-            cursor(HAND);
+        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS ){
+            if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)  ){
+                cursor(HAND);
+            }
+            else if(gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER ){
+                if(gui.b6.updateHandCursor(p5)){
+                    cursor(HAND);
+                }
+                else {
+                    cursor(ARROW);
+                }
+            }
+            else {
+                cursor(ARROW);
+            }
         }
-        else {
-            cursor(ARROW);
+
+        else if(gui.pantallaActual == GUI.PANTALLA.USUARIO ){
+            if(gui.b7.updateHandCursor(p5) || gui.b8.updateHandCursor(p5)){
+                cursor(HAND);
+            }
+            else {
+                cursor(ARROW);
+            }
+
         }
+
+
     }
 
     // ******************* KEYBOARD interaction ***************************** //
@@ -119,31 +141,48 @@ public class Trivio005 extends PApplet {
         // Comprova i actualitza l'escriptura dins els TextFields
         gui.tf1.keyPressed(key, keyCode);
         gui.tf2.keyPressed(key, keyCode);
+        gui.tf3.keyPressed(key, keyCode);
 
     }
 
     // ******************* MOUSE interaction ***************************** //
 
     public void mousePressed(){
-        if(gui.b1.mouseOverButton(this)){
-            gui.pantallaActual = GUI.PANTALLA.INICIO;
+        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS ){
+            if(gui.b1.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.INICIO;
+            }
+            else if(gui.b2.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.FUTURASLECTURAS;
+            }
+            else if(gui.b3.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.LECTURASCOMPLETADAS;
+            }
+            else if(gui.b4.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.QUEQUIERESLEER;
+            }
+            else if(gui.b5.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.ESTADÍSTICAS;
+            }
+            else if (gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER && gui.b6.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.QUEQUIERESLEER;
+            }
         }
-        else if(gui.b2.mouseOverButton(this)){
-            gui.pantallaActual = GUI.PANTALLA.FUTURASLECTURAS;
+
+        else if (gui.pantallaActual == GUI.PANTALLA.USUARIO){
+            if(gui.b7.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.INICIO;
+            }
+            else if(gui.b8.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.INICIO;
+            }
         }
-        else if(gui.b3.mouseOverButton(this)){
-            gui.pantallaActual = GUI.PANTALLA.LECTURASCOMPLETADAS;
-        }
-        else if(gui.b4.mouseOverButton(this)){
-            gui.pantallaActual = GUI.PANTALLA.QUEQUIERESLEER;
-        }
-        else if(gui.b5.mouseOverButton(this)){
-            gui.pantallaActual = GUI.PANTALLA.ESTADÍSTICAS;
-        }
+
 
         // Comprova si pitjam amb el mouse sobre els TextFields
         gui.tf1.isPressed(this);
         gui.tf2.isPressed(this);
+        gui.tf3.isPressed(this);
     }
 
 

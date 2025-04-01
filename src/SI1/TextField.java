@@ -15,13 +15,13 @@ public class TextField {
 
     // Text del camp
     public String text = "";
-    int textSize = 60;
+    int textSize;
 
     boolean selected = false;
 
     // Constructor
-    public TextField(PApplet p5, int x, int y, int w, int h) {
-        this.x = x; this.y = y; this.w = w; this.h = h;
+    public TextField(PApplet p5, int x, int y, int w, int h, int textSize) {
+        this.x = x; this.y = y; this.w = w; this.h = h; this.textSize = textSize;
         this.bgColor = p5.color(140, 140, 140);
         this.fgColor = p5.color(0, 0, 0);
         this.selectedColor = p5.color(255);

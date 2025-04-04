@@ -11,7 +11,7 @@ import processing.core.PImage;
 public class GUI extends PApplet{
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {USUARIO, INICIO, FUTURASLECTURAS, LECTURASCOMPLETADAS, QUEQUIERESLEER, ESTADÍSTICAS, LIBRO};
+    public enum PANTALLA {USUARIO, INICIO, FUTURASLECTURAS, LECTURASCOMPLETADAS, QUEQUIERESLEER, ESTADÍSTICAS, LIBRO, DATOS};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -30,7 +30,7 @@ public class GUI extends PApplet{
 
 
     // Botons
-    Button b1, b2, b3, b4 ,b5, b6, b7, b8;  // 2a passa : declarar els components
+    Button b1, b2, b3, b4 ,b5, b6, b7, b8, b9, b10, b11;  // 2a passa : declarar els components
 
     RoundButton rb1;
     PImage portada1;
@@ -104,6 +104,9 @@ public class GUI extends PApplet{
         b6 = new Button(p5, "Enter", 1600, 670, 150, 70);
         b7 = new Button(p5, "Iniciar sesión", 670, 730, 230, 110);
         b8 = new Button(p5, "Registrarse", 920, 730, 230, 110);
+        b9 = new Button(p5, "Guardar como futura lectura", 1350, 830, 500, 90);
+        b10 = new Button(p5, "Libro leido", 1350, 930, 500, 90);
+        b11 = new Button(p5, "Guardar", 1350, 930, 500, 90);
     }
 
 
@@ -257,6 +260,24 @@ public class GUI extends PApplet{
         b3.display(p5);
         b4.display(p5);
         b5.display(p5);
+
+        b9.display(p5);
+        b10.display(p5);
+    }
+
+    public void dibuixaPantallaDatos(PApplet p5){
+
+        p5.background(197, 212, 232);
+        dibuixaSideBar(p5);
+
+        p5.textFont(fontsApp.getSecondFont());
+        b1.display(p5);
+        b2.display(p5);
+        b3.display(p5);
+        b4.display(p5);
+        b5.display(p5);
+
+        b11.display(p5);
     }
 
 

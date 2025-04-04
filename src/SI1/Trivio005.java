@@ -76,6 +76,9 @@ public class Trivio005 extends PApplet {
 
             case USUARIO:     gui.dibuixaPantallaUsuario(this);
                 break;
+
+            case DATOS:     gui.dibuixaPantallaDatos(this);
+                break;
         }
 
         updateCursor(this);
@@ -83,12 +86,28 @@ public class Trivio005 extends PApplet {
     }
 
     public void updateCursor(PApplet p5){
-        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS ){
+        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS|| gui.pantallaActual == GUI.PANTALLA.LIBRO|| gui.pantallaActual == GUI.PANTALLA.DATOS ){
             if(gui.b1.updateHandCursor(p5) || gui.b2.updateHandCursor(p5) || gui.b3.updateHandCursor(p5)|| gui.b4.updateHandCursor(p5)|| gui.b5.updateHandCursor(p5)  ){
                 cursor(HAND);
             }
             else if(gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER ){
                 if(gui.b6.updateHandCursor(p5)){
+                    cursor(HAND);
+                }
+                else {
+                    cursor(ARROW);
+                }
+            }
+            else if(gui.pantallaActual == GUI.PANTALLA.LIBRO ){
+                if(gui.b9.updateHandCursor(p5)|| gui.b10.updateHandCursor(p5)){
+                    cursor(HAND);
+                }
+                else {
+                    cursor(ARROW);
+                }
+            }
+            else if(gui.pantallaActual == GUI.PANTALLA.DATOS ){
+                if(gui.b11.updateHandCursor(p5)){
                     cursor(HAND);
                 }
                 else {
@@ -148,7 +167,7 @@ public class Trivio005 extends PApplet {
     // ******************* MOUSE interaction ***************************** //
 
     public void mousePressed(){
-        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS ){
+        if(gui.pantallaActual == GUI.PANTALLA.INICIO || gui.pantallaActual == GUI.PANTALLA.FUTURASLECTURAS || gui.pantallaActual == GUI.PANTALLA.LECTURASCOMPLETADAS || gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER || gui.pantallaActual == GUI.PANTALLA.ESTADÍSTICAS|| gui.pantallaActual == GUI.PANTALLA.LIBRO|| gui.pantallaActual == GUI.PANTALLA.DATOS ){
             if(gui.b1.mouseOverButton(this)){
                 gui.pantallaActual = GUI.PANTALLA.INICIO;
             }
@@ -167,6 +186,20 @@ public class Trivio005 extends PApplet {
             else if (gui.pantallaActual == GUI.PANTALLA.QUEQUIERESLEER && gui.b6.mouseOverButton(this)){
                 gui.pantallaActual = GUI.PANTALLA.QUEQUIERESLEER;
             }
+            else if(gui.rb1.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.LIBRO;
+            }
+            else if(gui.pantallaActual == GUI.PANTALLA.LIBRO && gui.b9.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.FUTURASLECTURAS;
+            }
+
+            else if(gui.pantallaActual == GUI.PANTALLA.LIBRO && gui.b10.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.DATOS;
+            }
+
+            else if(gui.pantallaActual == GUI.PANTALLA.DATOS && gui.b11.mouseOverButton(this)){
+                gui.pantallaActual = GUI.PANTALLA.LECTURASCOMPLETADAS;
+            }
         }
 
         else if (gui.pantallaActual == GUI.PANTALLA.USUARIO){
@@ -177,6 +210,7 @@ public class Trivio005 extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.INICIO;
             }
         }
+
 
 
         // Comprova si pitjam amb el mouse sobre els TextFields

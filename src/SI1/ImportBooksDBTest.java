@@ -84,7 +84,7 @@ public class ImportBooksDBTest extends PApplet {
         int n=0;
 
         for(String l : lines){
-            if(n>0){
+            if(n>0 && n<2500){
             String[] info = l.split(",");
             String title = info[1].replace("\'", "\\'").replace("\"", "\\\"");
             String author = info[2].split("/")[0];
@@ -99,6 +99,9 @@ public class ImportBooksDBTest extends PApplet {
             String idEditor = db.getInfo("ideditorial", "editorial", editor, "nombre");
             if(idEditor==null){
                 idEditor = "4591";
+            }
+            if(idAuthor==null){
+                idAuthor = "111";
             }
 
             String sql = "INSERT INTO libro (isbn, titulo, numpags, valoracion, fechapublicacion, resena, editorial_ideditorial, autor_idautor, genero_idgenero, coleccion_idcolecion, fecha)";

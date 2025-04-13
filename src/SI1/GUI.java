@@ -40,21 +40,33 @@ public class GUI extends PApplet{
     BarsDiagram BD;
     SectorDiagram s;
 
+    // Variable de Calendari
+    Calendari c;
 
-
-    // Dimensions del Confirm
-    float compW = 800;
-    float compH = 340;
-
-    // Textos del Confirm
-    String title = "Canvia de Color!";
-    String message = "Tria el nou color de fons";
 
     // Color de fons
     int bgColor;
 
     // Elements de la Interfície Gràfica (TextFields)
     TextField tf1, tf2, tf3;
+
+    // Elements de la Interfície Gràfica (ArrayButton)
+
+    ArrayButtons buttons;
+    boolean cursorHand = false;
+
+    // Dimensions dels botons
+    float buttonW = 50;
+
+    // Espai entre els botons
+    float buttonS = 5;
+
+    // Color de fons de l'App
+    int bgColor2 = color(255);
+
+
+    // Declaració de les variables
+    TextArea areaText;
 
 
 
@@ -92,7 +104,14 @@ public class GUI extends PApplet{
         portada2 = p5.loadImage("data/aoe.PNG");
         rb2 = new RoundButton(p5, portada2, 800, 190, 80);
 
+        // Crea el Calendari
+        c = new Calendari(580,190,700,400);
 
+        // Creació de l'Array de 10 Botons
+        buttons = new ArrayButtons(this, 10, 560, 620, buttonW, buttonS);
+
+        // Creació dels camps de text
+        areaText = new TextArea(this, 560, 800, 600, 250, 40, 5);
     }
 
     public void createButtons(PApplet p5){
@@ -278,6 +297,22 @@ public class GUI extends PApplet{
         b5.display(p5);
 
         b11.display(p5);
+
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(50);p5.textAlign(CENTER);
+        p5.text("Fecha en la que se ha finalizado la lectura", 1000, 100);
+        p5.text("Puntuación", 660, 600);
+        p5.text("Reflexión del libro", 730, 780);
+
+        // Dibuixa el calendari
+        c.display(p5);
+
+        // Dibuixa els botons
+        buttons.display(p5);
+
+        p5.fill(0); p5.textSize(48); p5.textAlign(LEFT);
+        // Dibuixa l'àrea de text
+        areaText.display(p5);
+
     }
 
 
@@ -289,7 +324,7 @@ public class GUI extends PApplet{
         // Zona Sidebar ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         p5.fill(appColors.getFirstColor());
         p5.rect(marginH, marginV, sidebarWidth, sidebarHeight);
-        p5.fill(255); p5.textFont(fontsApp.getFirstFont()); p5.textSize(midaTitol);
+        p5.fill(255); p5.textFont(fontsApp.getFirstFont()); p5.textSize(midaTitol); p5.textAlign(CENTER);
         p5.text("TUS LECTURAS", marginH + sidebarWidth/2, 30+marginV + logoHeight + sidebarHeight/2);
     }
 

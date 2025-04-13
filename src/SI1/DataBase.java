@@ -35,7 +35,7 @@ public class DataBase {
 
     public String getInfo(String columnName, String tableName, String id, String key){
         try{
-            String q = "SELECT " + columnName + " FROM " + tableName + " WHERE "+key+" = '"+id+"' ";
+            String q = "SELECT " + columnName + " FROM " + tableName + " WHERE "+key+" = '"+id+"' " + ";";
             System.out.println(q);
             ResultSet resultSet = query.executeQuery(q);
             resultSet.next();

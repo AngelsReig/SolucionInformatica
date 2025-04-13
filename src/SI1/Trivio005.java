@@ -162,6 +162,18 @@ public class Trivio005 extends PApplet {
         gui.tf2.keyPressed(key, keyCode);
         gui.tf3.keyPressed(key, keyCode);
 
+        if(keyCode==LEFT){
+            gui.c.prevMonth();
+            println("PREV MONTH");
+        }
+        // Anar un mes endavant
+        else if(keyCode==RIGHT){
+            gui.c.nextMonth();
+            println("PREV MONTH");
+        }
+
+        gui.areaText.keyPressed(key, (int)keyCode);
+
     }
 
     // ******************* MOUSE interaction ***************************** //
@@ -199,6 +211,12 @@ public class Trivio005 extends PApplet {
 
             else if(gui.pantallaActual == GUI.PANTALLA.DATOS && gui.b11.mouseOverButton(this)){
                 gui.pantallaActual = GUI.PANTALLA.LECTURASCOMPLETADAS;
+            }
+
+            else if (gui.pantallaActual == GUI.PANTALLA.DATOS){
+                gui.c.checkButtons(this);
+                gui.buttons.checkMousePressed(this);
+                gui.areaText.isPressed(this);
             }
         }
 

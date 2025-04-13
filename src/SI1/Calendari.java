@@ -7,8 +7,8 @@ import java.util.Calendar;
 public class Calendari {
 
     // Textos representatius dels mesos
-    String[] months = {"Jan","Feb","Mar","Apr","May","Jun",
-            "Jul","Aug","Sep","Oct","Nov","Dec"};
+    String[] months = {"Ene","Feb","Mar","Abr","May","Jun",
+            "Jul","Ago","Sep","Oct","Nov","Dic"};
 
     // Informació del calendari
     int any, mes, dia;

@@ -30,7 +30,7 @@ public class GUI extends PApplet{
 
 
     // Botons
-    Button b1, b2, b3, b4 ,b5, b6, b7, b8, b9, b10, b11;  // 2a passa : declarar els components
+    Button b1, b2, b3, b4 ,b5, b6, b7, b8, b9, b10, b11; // 2a passa : declarar els components
 
     RoundButton rb1;
     PImage portada1;
@@ -126,6 +126,8 @@ public class GUI extends PApplet{
         b9 = new Button(p5, "Guardar como futura lectura", 1350, 830, 500, 90);
         b10 = new Button(p5, "Libro leido", 1350, 930, 500, 90);
         b11 = new Button(p5, "Guardar", 1350, 930, 500, 90);
+
+
     }
 
 
@@ -153,10 +155,6 @@ public class GUI extends PApplet{
 
         p5.background(197, 212, 232);
         dibuixaSideBar(p5);
-
-        rb1.display(p5);
-        rb2.display(p5);
-        //Afegir files
 
         p5.textFont(fontsApp.getSecondFont());
         b2.display(p5);
@@ -209,15 +207,13 @@ public class GUI extends PApplet{
         b4.display(p5);
         b5.display(p5);
 
+
         p5.fill(255); p5.textFont(fontsApp.getFirstFont()); p5.textSize(60);
         p5.text("Lecturas", 220, 400);
         p5.text("completadas", 220, 455);
 
         p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(30);
-        p5.text("dd/mm/aaa", 550,100);
-        p5.text("dd/mm/aaa", 550,330);
-        p5.text("dd/mm/aaa", 550,560);
-        p5.text("dd/mm/aaa", 550,790);
+        p5.text("dd/mm/aaaa", 550,100);
     }
 
     public void dibuixaPantallaQueQuieresLeer(PApplet p5){
@@ -282,6 +278,13 @@ public class GUI extends PApplet{
 
         b9.display(p5);
         b10.display(p5);
+
+
+        p5.fill(0); p5.textFont(fontsApp.getSecondFont()); p5.textSize(50);p5.textAlign(CENTER);
+        p5.text("Título: ", 880, 100);
+        p5.text("Autor: ", 690, 300);
+        p5.text("ISBN: ", 690, 500);
+        p5.text("Valoración: ", 650, 700);
     }
 
     public void dibuixaPantallaDatos(PApplet p5){

@@ -84,7 +84,7 @@ public class ImportBooksDBTest extends PApplet {
         int n=0;
 
         for(String l : lines){
-            if(n>4498 && n<6500){
+            if(n>0){
             String[] info = l.split(",");
             String title = info[1].replace("\'", "\\'").replace("\"", "\\\"");
             String author = info[2].split("/")[0];

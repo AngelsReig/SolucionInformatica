@@ -225,7 +225,7 @@ public class Trivio005 extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.INICIO;
             }
             else if(gui.b8.mouseOverButton(this)){
-                gui.pantallaActual = GUI.PANTALLA.INICIO;
+                gui.pantallaActual = GUI.PANTALLA.USUARIO;
             }
         }
 
